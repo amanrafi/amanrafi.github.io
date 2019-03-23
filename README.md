@@ -1,2 +1,3 @@
-# amanrafi.github.io
-Personal Website
+## Personal Website
+
+Personal website hosted on GitHub
