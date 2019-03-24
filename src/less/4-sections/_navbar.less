@@ -1,9 +1,9 @@
 nav {
   position: fixed;
   z-index: 999;
-  top: -2px;
-  left: 0;
-  width: 100%;
+  top: 70px;
+  left: 130px;
+  max-width: 100%;
 
   .navbar-main {
 
@@ -11,19 +11,47 @@ nav {
       background: transparent;
       transition: all 0.4s ease-in-out;
 
-      &.scrolled {
-        background-color: #FFF;
+      // &.scrolled {
+      //   background-color: #FFF;
 
-        a {
-          color: #333;
-        }
-      }
+      //   a,
+      //   .logo,
+      //   .medium {
+      //     color: #333;
+      //   }
+      // }
     }
 
     ul {
       list-style-type: none;
       margin: 0;
       padding: 0;
+
+      .logo-container {
+        @logo-box: 100px;
+        @border-size: 2px;
+
+        &:after {
+          content: "";
+          height: @logo-box;
+          width: @logo-box;
+          top: 50%;
+          left: 50%;
+          margin-top: -(@logo-box/2 + @border-size);
+          margin-left: -(@logo-box/2 + @border-size);
+          position: absolute;
+          border: @border-size solid @fuchsia;
+          transform: rotate(45deg);
+        }
+      }
+
+      .logo {
+        color: @white;
+        font-family: "Montserrat", sans-serif;
+        padding: 10px 25px;
+        position: relative;
+        transform: rotate(-45deg);
+      }
 
       li {
         display: inline-block;
@@ -35,7 +63,7 @@ nav {
           margin-right: 0;
         }
 
-        a {
+        .medium {
           color: @white;
           font-family: "Montserrat", sans-serif;
           padding: 10px 25px;
@@ -178,6 +206,113 @@ nav {
       &:focus,
       &:active {
         color: @white;
+      }
+    }
+  }
+}
+
+.dot-navbar {
+
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  bottom: auto;
+  z-index: 1;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+  ul {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  li {
+    text-align: right;
+
+    a {
+
+      display: inline-block;
+      /* prevent weird movements on hover when you use a CSS3 transformation - webkit browsers */
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+
+      &:hover {
+        span {
+          -webkit-transform: scale(1);
+          -moz-transform: scale(1);
+          -ms-transform: scale(1);
+          -o-transform: scale(1);
+          transform: scale(1);
+        }
+      }
+
+      span {
+        float: right;
+        display: inline-block;
+        -webkit-transform: scale(0.6);
+        -moz-transform: scale(0.6);
+        -ms-transform: scale(0.6);
+        -o-transform: scale(0.6);
+        transform: scale(0.6);
+      }
+
+      .is-selected {
+        span {
+          -webkit-transform: scale(1);
+          -moz-transform: scale(1);
+          -ms-transform: scale(1);
+          -o-transform: scale(1);
+          transform: scale(1);
+        }
+      }
+
+      .cd-dot {
+        position: relative;
+        /* we set a top value in order to align the dot with the label. If you change label's font, you may need to change this top value*/
+        top: 8px;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background-color: @theme-green-1;
+        -webkit-transition: -webkit-transform 0.2s, background-color 0.5s;
+        -moz-transition: -moz-transform 0.2s, background-color 0.5s;
+        transition: transform 0.2s, background-color 0.5s;
+        -webkit-transform-origin: 50% 50%;
+        -moz-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+        -o-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+      }
+
+      .cd-label {
+        position: relative;
+        margin-right: 10px;
+        padding: .4em .5em;
+        color: white;
+        font-size: 14px;
+        font-size: 0.875rem;
+        -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+        -moz-transition: -moz-transform 0.2s, opacity 0.2s;
+        transition: transform 0.2s, opacity 0.2s;
+        opacity: 0;
+        -webkit-transform-origin: 100% 50%;
+        -moz-transform-origin: 100% 50%;
+        -ms-transform-origin: 100% 50%;
+        -o-transform-origin: 100% 50%;
+        transform-origin: 100% 50%;
       }
     }
   }

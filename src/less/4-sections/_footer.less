@@ -1,9 +1,91 @@
 footer {
-  height: 80px;
+  height: auto;
   padding-top: 50px;
+  padding-bottom: 10px;
+  background: rgb(122,57,219);
+  background: linear-gradient(90deg, rgba(122,57,219,1) 15%, rgba(96,72,255,1) 100%);
 
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     color: @white;
+  }
+}
+
+.footer-section {
+  .list-link {
+    font-size: 12px;
+    margin-left: 15px;
+  }
+}
+
+.social-link-wrapper {
+  margin-left: 20px;
+
+  a {
+    color: @white;
+    padding: 7px 5px;
+    border: 2px solid @white;
+    border-radius: 50%;
+    transition: all 0.4s ease;
+  }
+  .fa {
+    transition: all 0.3s ease;
+  }
+
+  .facebook {
+    &:hover {
+      .fa-facebook {
+        color: lighten(@facebook, 5%);
+      }
+      background-color: fade(@white, 80%);
+    }
+  }
+  .instagram {
+    &:hover {
+      .fa-instagram {
+        color: @instagram;
+      }
+      background-color: fade(@white, 80%);
+    }
+  }
+  .dribbble {
+    &:hover {
+      .fa-dribbble {
+        color: @dribbble;
+      }
+      background-color: fade(@white, 80%);
+    }
+  }
+  .behance {
+    &:hover {
+      .fa-behance {
+        color: @behance;
+      }
+      background-color: fade(@white, 80%);
+    }
+  }
+}
+
+.contact-wrapper {
+  a, p { color: @white; }
+
+  .contact-info {
+    .fa {
+      color: @white;
+      padding: 10px 5px;
+      border: 1.5px solid @white;
+      border-radius: 50%;
+    }
+    .icon {
+      margin-right: 10px;
+      display: inline-block;
+    }
+    .info {
+      display: inline-block;
+      a, p {
+        margin: 0;
+        display: block;
+      }
+    }
   }
 }
 
