@@ -19,7 +19,16 @@ header {
     padding-top: 40px;
   }
 
+  .header-wrapper {
+    position: relative;
+    height: calc(100vw * (9/16));
+    width: 80vw;
+  }
+
   .title {
+
+    position: absolute;
+    right: 100px;
 
     h1,
     h2,
@@ -84,7 +93,10 @@ header {
 }
 
 .social {
+  .text-center();
   margin: 25px 0 30px;
+  position: absolute;
+  bottom: 15vh;
 
   a {
     color: @white;
@@ -95,7 +107,7 @@ header {
 
     @media screen and (min-width: 769px) {
       &:not(:last-child) {
-        margin-right: 100px;
+        margin-right: 60px;
       }
       &:hover .hoverLayer {
         bottom: 0;
@@ -104,8 +116,8 @@ header {
 
     @media screen and (max-width: 768px) {
       margin-bottom: 10px;
-      max-width: 120px;
-      max-height: 50px;
+      max-width: 90px;
+      max-height: 36px;
     }
     @media screen and (max-width: 550px) {
       display: block;
@@ -126,9 +138,9 @@ header {
     }
 
     .hoverLayer {
-      height: 57px;
+      height: 52px;
       width: 100px;
-      bottom: -57px;
+      bottom: -52px;
       z-index: 1;
       position: absolute;
       transition: all 0.5s ease;
@@ -148,8 +160,8 @@ header {
     }
 
     i {
-      height: 40px;
-      width: 100px;
+      height: 36px;
+      width: 90px;
       padding: 11px 0 0;
       z-index: 2;
       position: relative;

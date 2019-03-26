@@ -1,97 +1,46 @@
-    <header id="site-header">
-      <div class="gradient">
+<header id="site-header">
+  <div class="gradient">
 
-        <nav id="navigation">
+    {% include "partials/nav.njk" %}
 
-          <div id="main-navbar" class="navbar-main">
-            <ul class="page-scroll">
-              <li class="logo-container"><a class="logo" href="#top">Rafi Aman</a></li>
-              <li><a class="medium" href="#about">About</a></li>
-              <li><a class="medium" href="#portfolio">Portfolio</a></li>
-              <li><a class="medium" href="#sitemap">Sitemap</a></li>
-              <li><a class="medium" href="#info">Info</a></li>
-            </ul>
+    <div class="container top-fix">
+      <div class="row">
+        <div class="twelve columns">
+
+          <div class="header-wrapper">
+            <div class="title">
+              <img src="/dist/images/avatar01.jpg" class="img-circle img-thumbnail" alt="Rafi Aman" role="presentation">
+              <h1>Rafi Aman</h1>
+              <div class="typed-animation">
+                <h2><span class="role"></span></h2>
+              </div>
+            </div>
+
+            <div class="social">
+              <a id="github" href="https://github.com/jobayerarman" target="_blank">
+                <i class="fa fa-2x fa-github"></i>
+                <div class="hoverLayer github"></div>
+              </a>
+              <a id="twitter" href="https://twitter.com/jobayerarman" target="_blank">
+                <i class="fa fa-2x fa-twitter"></i>
+                <div class="hoverLayer twitter"></div>
+              </a>
+              <a id="linkedIn" href="https://linkedin.com/pub/jobayer-arman/6b/635/67a" target="_blank">
+                <i class="fa fa-2x fa-linkedin"></i>
+                <div class="hoverLayer linkedIn"></div>
+              </a>
+              <a id="facebook" href="https://facebook.com/jobayer.arman" target="_blank">
+                <i class="fa fa-2x fa-facebook"></i>
+                <div class="hoverLayer facebook"></div>
+              </a>
+            </div>
           </div>
 
-          <div id="toggle-navbar" class="navbar-toggle">
-            <div class="bar"></div>
-          </div>
-
-          <div id="mobile-navbar" class="navbar-mobile"></div>
-
-        </nav>
-
-        <div class="dot-navbar">
-          <ul>
-            <li class="current">
-              <a class="is-selected" href="#top">
-                <span class="cd-dot"></span>
-					      <span class="cd-label">Profile</span>
-              </a>
-            </li>
-            <li>
-              <a href="#about">
-                <span class="cd-dot"></span>
-					      <span class="cd-label">About</span>
-              </a>
-            </li>
-            <li>
-              <a href="#portfolio">
-                <span class="cd-dot"></span>
-					      <span class="cd-label">Portfolio</span>
-              </a>
-            </li>
-            <li>
-              <a href="#sitemap">
-                <span class="cd-dot"></span>
-					      <span class="cd-label">Sitemap</span>
-              </a>
-            </li>
-            <li>
-              <a href="#info">
-                <span class="cd-dot"></span>
-					      <span class="cd-label">Info</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="container text-center top-fix">
-          <div class="row">
-            <div class="twelve columns">
-
-              <div class="title">
-                <img src="/dist/images/avatar01.jpg" class="img-circle img-thumbnail" alt="Rafi Aman" role="presentation">
-                <h1>Rafi Aman</h1>
-                <div class="typed-animation">
-                  <h2><span class="role"></span></h2>
-                </div>
-              </div>
-
-              <div class="social">
-                <a id="github" href="https://github.com/jobayerarman" target="_blank">
-                  <i class="fa fa-2x fa-github"></i>
-                  <div class="hoverLayer github"></div>
-                </a>
-                <a id="twitter" href="https://twitter.com/jobayerarman" target="_blank">
-                  <i class="fa fa-2x fa-twitter"></i>
-                  <div class="hoverLayer twitter"></div>
-                </a>
-                <a id="linkedIn" href="https://linkedin.com/pub/jobayer-arman/6b/635/67a" target="_blank">
-                  <i class="fa fa-2x fa-linkedin"></i>
-                  <div class="hoverLayer linkedIn"></div>
-                </a>
-                <a id="facebook" href="https://facebook.com/jobayer.arman" target="_blank">
-                  <i class="fa fa-2x fa-facebook"></i>
-                  <div class="hoverLayer facebook"></div>
-                </a>
-              </div>
-
-            </div> <!-- end of columns -->
-          </div> <!-- end of row -->
-        </div> <!-- end of container -->
-      </div> <!-- end of gradient -->
-      <div class="nav-down page-scroll">
-        <a href="#feature"><img class="center-block" src="dist/images/down-arrow.png" alt=""></a>
-      </div>
-    </header>
+        </div> <!-- end of columns -->
+      </div> <!-- end of row -->
+    </div> <!-- end of container -->
+  </div> <!-- end of gradient -->
+  <div class="nav-down page-scroll">
+    <a href="#feature"><img class="center-block" src="dist/images/down-arrow.png" alt=""></a>
+  </div>
+</header>
