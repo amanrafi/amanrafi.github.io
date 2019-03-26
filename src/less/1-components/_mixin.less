@@ -1,3 +1,118 @@
+// Typography
+
+.text-emphasis-variant(@color) {
+  color: @color;
+  a&:hover,
+  a&:focus {
+    color: darken(@color, 10%);
+  }
+}
+
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+.button-variant(@color; @background; @border) {
+  color: @color;
+  background-color: @background;
+  border-color: @border;
+
+  &:focus,
+  &.focus {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 25%);
+  }
+  &:hover {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 12%);
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 12%);
+
+    &:hover,
+    &:focus,
+    &.focus {
+      color: @color;
+      background-color: darken(@background, 17%);
+          border-color: darken(@border, 25%);
+    }
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: @background;
+          border-color: @border;
+    }
+  }
+
+  .badge {
+    color: @background;
+    background-color: @color;
+  }
+}
+
+// Button sizes
+.button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius) {
+  padding: @padding-vertical @padding-horizontal;
+  font-size: @font-size;
+  line-height: @line-height;
+  border-radius: @border-radius;
+}
+
+// Drop shadows
+.box-shadow(@h-offset, @v-offset, @blur, @spread, @color) {
+  box-shadow: @h-offset @v-offset @blur @spread @color;
+}
+
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+          box-shadow: @shadow;
+}
+
+// Box sizing
+.box-sizing(@boxmodel) {
+  -webkit-box-sizing: @boxmodel;
+     -moz-box-sizing: @boxmodel;
+          box-sizing: @boxmodel;
+}
+
+// WebKit-style focus
+
+.tab-focus() {
+  // Default
+  outline: thin dotted;
+  // WebKit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+// Opacity
+
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+
 /* Misc Group
 ========================== */
 .size (@width: 400, @height: 200) {
@@ -24,5 +139,24 @@
   }
   &:after {
     clear: both;
+  }
+}
+
+@values-array: 0, 5, 10, 15, 20, 30, 40, 50;
+
+// init functions
+.make-space(@prefix) {
+  .for(@values-array);
+  .-each(@value) {
+    .@{prefix}-p-@{value}   { padding:        ~"@{value}px"; }
+    .@{prefix}-pt-@{value}  { padding-top:    ~"@{value}px"; }
+    .@{prefix}-pl-@{value}  { padding-left:   ~"@{value}px"; }
+    .@{prefix}-pr-@{value}  { padding-right:  ~"@{value}px"; }
+    .@{prefix}-pb-@{value}  { padding-bottom: ~"@{value}px"; }
+    .@{prefix}-m-@{value}   { margin:         ~"@{value}px"; }
+    .@{prefix}-mt-@{value}  { margin-top:     ~"@{value}px"; }
+    .@{prefix}-ml-@{value}  { margin-left:    ~"@{value}px"; }
+    .@{prefix}-mr-@{value}  { margin-right:   ~"@{value}px"; }
+    .@{prefix}-mb-@{value}  { margin-bottom:  ~"@{value}px"; }
   }
 }
