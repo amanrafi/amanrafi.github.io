@@ -1,0 +1,34 @@
+.section-wrapper {
+  margin-top: 250px;
+  margin-bottom: 250px;
+  background: transparent;
+
+  &:first-child {
+    margin-top: 25px;
+  }
+}
+
+.section-content {
+  padding: 30px 20px;
+  position: relative;
+}
+
+.section-title {
+  .text-left();
+  margin-left: 130px;
+  margin-top: 175px - 50px;
+  position: absolute;
+  z-index: 999;
+}
+
+.image-box {
+  .size(600px, 375px);
+  margin: 0 auto;
+  background-color: @brand-electric-violet;
+  transition: all .3s ease-in-out;
+  z-index: -1;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

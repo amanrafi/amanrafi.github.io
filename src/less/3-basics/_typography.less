@@ -11,7 +11,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #222;
+  color: @white;
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
 }
@@ -73,9 +73,13 @@ hr {
   margin: 10px 0 30px;
   height: 0;
 }
-
-//** Unit-less `line-height` for use in components like buttons.
-@line-height-base:        1.428571429; // 20/14
+.hr-style-primary {
+  width: 25%;
+  border: solid @brand-cerise;
+  border-width: 5px 0 0;
+  margin: 0 auto 15px;
+  box-shadow: @gdt-brand-cerise;
+}
 
 // Alignment
 .text-left           { text-align: left; }
@@ -88,6 +92,26 @@ hr {
 .text-lowercase      { text-transform: lowercase; }
 .text-uppercase      { text-transform: uppercase; }
 .text-capitalize     { text-transform: capitalize; }
+
+// Contextual colors
+.text-muted {
+  color: @text-muted;
+}
+.text-primary {
+  .text-emphasis-variant(@brand-primary);
+}
+.text-success {
+  .text-emphasis-variant(@state-success-text);
+}
+.text-info {
+  .text-emphasis-variant(@state-info-text);
+}
+.text-warning {
+  .text-emphasis-variant(@state-warning-text);
+}
+.text-danger {
+  .text-emphasis-variant(@state-danger-text);
+}
 
 // Lists
 // -------------------------
