@@ -1,7 +1,7 @@
 {
   "name": "portfolio-website",
   "description": "Personal website hosted on github",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "Rafi Aman",
     "email": "aman.rafi.s2@gmail.com"
@@ -24,7 +24,7 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^7.0.0",
-    "gulp-bump": "^2.7.0",
+    "gulp-bump": "^3.1.3",
     "gulp-concat": "^2.6.1",
     "gulp-cssmin": "^0.2.0",
     "gulp-eslint": "^4.0.0",
