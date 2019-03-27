@@ -103,7 +103,7 @@ var custom = {
       var mobileChild = mobileNav.children('ul.expanded');
 
       $('html, body').stop().animate({
-        scrollTop: $($anchor.attr('href')).offset().top - 73
+        scrollTop: $($anchor.attr('href')).offset().top - 40
       }, 1500, 'easeInOutExpo');
 
       if (mobileNav.children('ul').hasClass('expanded')) {
@@ -117,6 +117,7 @@ var custom = {
     }
 
     menuToggle.on('click', '.bar', function(e) {
+      e.preventDefault();
       if (mobileNav.children('ul').hasClass('expanded')) {
         mobileNav.children('ul.expanded').removeClass('expanded').slideUp(250);
         $(this).removeClass('animate');
@@ -125,7 +126,6 @@ var custom = {
         $(this).addClass('animate');
       }
 
-      e.preventDefault();
     });
   },
 
@@ -187,8 +187,43 @@ var custom = {
     });
   },
 
-  scrollTrigger: function() {
+  scrollAnimation: function() {
+    let $headerHeight     = $('#site-header').outerHeight();
+    let $aboutHeight      = $('#about').outerHeight();
+    let headerDuration    = $headerHeight + ($aboutHeight / 2);
+    let $socialHeight      = $('.social').height();
+    var scrollTriggerPin  = new ScrollMagic.Controller();
 
+    var headerScene = new ScrollMagic.Scene({
+      triggerElement: '.header-wrapper',
+      duration: headerDuration - 1,
+      offset: ($(window).height() / 2 - 39)
+    })
+      .setPin('.header-hero-content', {pushFollowers: false, spacerClass: 'header-pin'})
+      .addIndicators({name: 'header'})
+      .addTo(scrollTriggerPin);
+
+    var socialTween = TweenMax.to('.social', 1, {
+      autoAlpha: 0,
+      ease: Linear.easeNone
+    });
+    var socialScene = new ScrollMagic.Scene({
+      triggerElement: '.social',
+      duration: 50,
+      offset: -(($(window).height() / 2) - ($socialHeight * 2.4))
+    })
+      .setTween(socialTween)
+      .addIndicators({name: 'social'})
+      .addTo(scrollTriggerPin);
+
+    var aboutScene = new ScrollMagic.Scene({
+      triggerElement: '#about',
+      duration: $aboutHeight / 2,
+      offset: $(window).height() / 2 - 40
+    })
+      .setPin('#about-wrapper', {pushFollowers: false})
+      .addIndicators({name: 'about'})
+      .addTo(scrollTriggerPin);
   },
 
   init: function() {
@@ -199,6 +234,7 @@ var custom = {
     custom.navigation();
     custom.animateSkill();
     custom.linkHighlight();
+    custom.scrollAnimation();
   }
 };
 

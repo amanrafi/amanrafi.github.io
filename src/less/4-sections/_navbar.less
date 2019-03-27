@@ -232,7 +232,6 @@ nav {
     padding: 0;
     list-style: none;
     cursor: default;
-    -webkit-touch-callout: none;
     user-select: none;
   }
 
@@ -242,7 +241,6 @@ nav {
 
       display: inline-block;
       /* prevent weird movements on hover when you use a CSS3 transformation - webkit browsers */
-      -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
 
       &:hover {
@@ -252,7 +250,7 @@ nav {
       }
 
       span {
-        float: right;
+        // float: right;
         display: inline-block;
         transform: scale(0.6);
       }
