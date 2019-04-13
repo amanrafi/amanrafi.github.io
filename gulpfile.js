@@ -207,7 +207,16 @@ var getDate = function() {
  *
  * Task: bump version
  */
-gulp.task( 'bump:version', function (callback) {
+function bumpFiles(newVer, cb) {
+
+  gulp.src(['./package.json'])
+    .pipe(plumber({errorHandler: errorLog}))
+    .pipe(bump({version: newVer}))
+    .pipe(gulp.dest('./'));
+
+  cb();
+};
+gulp.task( 'bump:version', function (cb) {
   var currentVersion = getPackageJsonVersion();
   gulp.src('/', {read: false})
     .pipe(prompt.prompt({
@@ -220,18 +229,10 @@ gulp.task( 'bump:version', function (callback) {
       var selectedChoice = res.bump;
       var newVer = semver.inc(currentVersion, selectedChoice);
 
-      bumpFiles(newVer, callback);
-    }))
+      bumpFiles(newVer, cb);
+    }));
 });
-function bumpFiles(newVer, callback) {
 
-  gulp.src(['./package.json'])
-    .pipe(plumber({errorHandler: errorLog}))
-    .pipe(bump({version: newVer}))
-    .pipe(gulp.dest('./'));
-
-  callback();
-};
 
 /**
  * Task: Cleanup
