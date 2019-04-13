@@ -255,20 +255,20 @@ gulp.task('clean:all', gulpSequence('clean:html', 'clean:css', 'clean:js'));
  * Compiles Less, Autoprefixes it and Minifies CSS.
  *
  */
- gulp.task('lint', function() {
-   return gulp.src(styles.src.allFiles)
-     .pipe(stylelint({
-      syntax: "less",
+gulp.task('lint', function() {
+  return gulp.src(styles.src.allFiles)
+    .pipe(stylelint({
+      syntax: 'less',
       failAfterError: false,
-       reporters: [
-         {formatter: 'string', console: true}
-       ]
-     }));
- });
- gulp.task('styles', ['lint', 'clean:css'], function() {
+      reporters: [
+        {formatter: 'string', console: true}
+      ]
+    }));
+});
+gulp.task('styles', ['lint', 'clean:css'], function() {
   var minifyCss = lazypipe()
-  .pipe( rename, {suffix: '.min'})
-  .pipe( cssmin, {keepSpecialComments: false});
+    .pipe( rename, {suffix: '.min'})
+    .pipe( cssmin, {keepSpecialComments: false});
 
   return gulp.src( styles.src.mainFile )
     .pipe( plumber( {errorHandler: errorLog}) )
@@ -313,25 +313,25 @@ gulp.task('js:lint', () => {
 gulp.task( 'js:custom', ['js:lint'], () => {
   let uglifyScripts = lazypipe().pipe( rename, {suffix: '.min'}).pipe( uglify );
   gulp.src( scripts.user.src.files )
-  .pipe( plumber({errorHandler: errorLog}) )
-  .pipe( babel({ presets: ['babel-preset-es2015'] }))
-  .pipe( concat( scripts.user.dest.filename ) )
-  .pipe( gulpif( config.production, uglifyScripts() ))
-  .pipe( gulp.dest( scripts.user.dest.path ) )
-  .pipe( size({
-    showFiles: true
-  }) );
+    .pipe( plumber({errorHandler: errorLog}) )
+    .pipe( babel({ presets: ['babel-preset-es2015'] }))
+    .pipe( concat( scripts.user.dest.filename ) )
+    .pipe( gulpif( config.production, uglifyScripts() ))
+    .pipe( gulp.dest( scripts.user.dest.path ) )
+    .pipe( size({
+      showFiles: true
+    }) );
 });
 gulp.task( 'js:vendor', () => {
   let uglifyScripts = lazypipe().pipe( rename, {suffix: '.min'}).pipe( uglify );
   gulp.src( scripts.vendor.src.files )
-  .pipe( plumber({errorHandler: errorLog}) )
-  .pipe( concat( scripts.vendor.dest.filename ))
-  .pipe( uglifyScripts() )
-  .pipe( gulp.dest( scripts.vendor.dest.path ))
-  .pipe( size({
-    showFiles: true
-  }));
+    .pipe( plumber({errorHandler: errorLog}) )
+    .pipe( concat( scripts.vendor.dest.filename ))
+    .pipe( uglifyScripts() )
+    .pipe( gulp.dest( scripts.vendor.dest.path ))
+    .pipe( size({
+      showFiles: true
+    }));
 });
 gulp.task( 'js:all', gulpSequence('clean:js', 'js:vendor', 'js:custom'));
 
