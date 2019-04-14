@@ -256,7 +256,7 @@ gulp.task('clean:all', gulpSequence('clean:html', 'clean:css', 'clean:js'));
  * Compiles Less, Autoprefixes it and Minifies CSS.
  *
  */
-gulp.task('lint', function() {
+gulp.task('css:lint', function() {
   return gulp.src(styles.src.allFiles)
     .pipe(stylelint({
       syntax: 'less',
@@ -266,7 +266,7 @@ gulp.task('lint', function() {
       ]
     }));
 });
-gulp.task('styles', ['lint', 'clean:css'], function() {
+gulp.task('styles', ['css:lint', 'clean:css'], function() {
   var minifyCss = lazypipe()
     .pipe( rename, {suffix: '.min'})
     .pipe( cssmin, {keepSpecialComments: false});
@@ -460,6 +460,6 @@ gulp.task('watch:img', ['image:compress'], function(done) {
   done();
 });
 
-gulp.task('debug:styles', ['lint'], function() {
-  gulp.watch( watch.styles, ['lint'] );
+gulp.task('debug:styles', ['css:lint'], function() {
+  gulp.watch( watch.styles, ['css:lint'] );
 });
