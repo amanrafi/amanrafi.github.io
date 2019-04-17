@@ -372,13 +372,16 @@ gulp.task( 'image:compress', function() {
   return gulp.src( images.src.files )
 
     .pipe( imagemin( {
-      optimizationLevel: 5, // 0-7 low-high
+      optimizationLevel: 7, // 0-7 low-high
       progressive: true,
       interlaced: true,
       svgoPlugins: [{removeViewBox: false}]
     }))
 
-    .pipe(gulp.dest( images.dest.path ));
+    .pipe(gulp.dest( images.dest.path ))
+    .pipe(size({
+      showFiles: true
+    }));
 });
 
 

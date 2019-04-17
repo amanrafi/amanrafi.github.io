@@ -8,7 +8,9 @@
     <title>Rafi Aman</title>
 
     <!-- User Stylesheet -->
-    <link rel="stylesheet" href="/dist/css/main.min.css?201903286">
+    <!-- build:css /dist/css/main.min.css -->
+    <link href="/dist/css/main.css" rel="stylesheet" type="text/css">
+    <!-- /build -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,12 +38,14 @@
   <div id="main-navbar" class="navbar-main">
     <ul class="page-scroll">
       <li class="logo-container">
-        <a class="logo" href="#site-header">Rafi Aman</a>
-        <span class="logo-box"></span>
+        <a class="logo" href="#site-header">
+          <span class="logo-title">Rafi Aman</span>
+          <span class="logo-box"></span>
+        </a>
       </li>
-      <li><a class="medium" href="#about">About</a></li>
-      <li><a class="medium" href="#portfolio">Portfolio</a></li>
-      <li><a class="medium" href="#skills">Skills</a></li>
+      <li class="section-links"><a class="medium" href="#about">About</a></li>
+      <li class="section-links"><a class="medium" href="#portfolio">Portfolio</a></li>
+      <li class="section-links"><a class="medium" href="#skills">Skills</a></li>
     </ul>
   </div>
 
@@ -55,8 +59,8 @@
 
 <div class="dot-navbar">
   <ul class="page-scroll">
-    <li class="current">
-      <a class="is-selected" href="#site-header">
+    <li>
+      <a href="#site-header">
         <span class="cd-dot"></span>
       </a>
     </li>
@@ -148,22 +152,68 @@
 
     <section id="portfolio" class="text-center">
   <div class="container">
-    <h2>Portfolio</h2>
-    <hr class="hr-style-primary">
-    </hr>
+    <div id="portfolio-title">
+      <h2>Portfolio</h2>
+      <hr class="hr-style-primary">
+    </div>
 
     <div class="row">
       <div class="twelve columns">
-        <div class="section-wrapper">
+        <div class="project-wrapper">
           <div class="section-content">
             <div class="section-title">
-              <h1>Brand Identity</h1>
-              <div class="link-container">
-                <a href="" class="btn btn-brand-one">View Details</a>
+              <div class="reveal-holder">
+                <div class="reveal-block"></div>
+                <h1>Brand Identity</h1>
+                <div class="link-container">
+                  <a href="#" id="myBtn" class="btn btn-brand-one">View Details</a>
+                </div>
               </div>
             </div>
             <div class="image-box" data-tilt data-tilt-max="15" data-tilt-perspective="1000" data-tilt-scale="1.1" data-tilt-speed="3000">
+              <img class="tilt-image" src="/dist/images/project-preview-one.png" alt="Brand Identity">
+            </div>
+            <!-- The Modal -->
+<div id="myModal" class="modal">
 
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      <p>Some text in the Modal Body</p>
+      <p>Some other text...</p>
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="twelve columns">
+        <div class="project-wrapper">
+          <div class="section-content">
+            <div class="section-title">
+              <div class="reveal-holder">
+                <div class="reveal-block"></div>
+                <h1>Magazine</h1>
+                <div class="link-container">
+                  <a href="#" class="btn btn-brand-one">View Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="image-box" data-tilt data-tilt-max="15" data-tilt-perspective="1000" data-tilt-scale="1.1" data-tilt-speed="3000">
+              <img class="tilt-image" src="/dist/images/project-preview-two.png" alt="Brand Identity">
             </div>
           </div>
         </div>
@@ -172,34 +222,19 @@
 
     <div class="row">
       <div class="twelve columns">
-        <div class="section-wrapper">
+        <div class="project-wrapper">
           <div class="section-content">
             <div class="section-title">
-              <h1>Magazine</h1>
-              <div class="link-container">
-                <a href="" class="btn btn-brand-one">View Details</a>
+              <div class="reveal-holder">
+                <div class="reveal-block"></div>
+                <h1>UI</h1>
+                <div class="link-container">
+                  <a href="#" class="btn btn-brand-one">View Details</a>
+                </div>
               </div>
             </div>
             <div class="image-box" data-tilt data-tilt-max="15" data-tilt-perspective="1000" data-tilt-scale="1.1" data-tilt-speed="3000">
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="twelve columns">
-        <div class="section-wrapper">
-          <div class="section-content">
-            <div class="section-title">
-              <h1>UI</h1>
-              <div class="link-container">
-                <a href="" class="btn btn-brand-one">View Details</a>
-              </div>
-            </div>
-            <div class="image-box" data-tilt data-tilt-max="15" data-tilt-perspective="1000" data-tilt-scale="1.1" data-tilt-speed="3000">
-
+              <img class="tilt-image" src="/dist/images/project-preview-three.jpg" alt="Brand Identity">
             </div>
           </div>
         </div>
@@ -211,12 +246,19 @@
 
     <section id="skills">
   <div class="container">
-    <h2 class="text-center">My Skills</h2>
-    <hr class="hr-style-primary"></hr>
+    <div id="skills-title">
+      <h2 class="text-center">My Skills</h2>
+      <hr class="hr-style-primary">
+    </div>
     <div class="row ">
       <div class="twelve columns">
-        <p class="text-center big">I am using various digital tool for my services. <br>
-          Most are adobe product. Check out my skill level from below graphs.</p>
+        <div class="skill-wrapper">
+          <div class="skill-content">
+            <p class="text-center big">I am using various digital tool for my services. <br>
+              Most are adobe product. Check out my skill level from below graphs.</p>
+            <p class="big">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, totam porro nostrum quos vel accusamus quia sit earum expedita ipsa fugit aut cumque cum obcaecati! Unde sit odio explicabo doloremque! Dolore totam consequuntur est voluptatem magni quod fugiat nihil quibusdam magnam! Omnis a nesciunt quasi totam magni voluptatum harum atque.</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -328,10 +370,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Vendor Scripts -->
-    <script src="/dist/js/vendor.min.js?201903286"></script>
+    <script src="/dist/js/vendor.min.js"></script>
 
     <!-- User Scripts -->
-    <script src="/dist/js/user.min.js?201903286"></script>
+    <!-- build:js /dist/js/user.min.js -->
+    <script src="/dist/js/user.js"></script>
+    <!-- /build -->
 
     <!-- Google Analytics -->
     <script>

@@ -1,3 +1,5 @@
+'use strict';
+
 // OOP
 var custom = {
   // variables
@@ -7,7 +9,7 @@ var custom = {
   isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false,
 
   // methods
-  typeAnimation: () => {
+  typeAnimation: function typeAnimation() {
     $('.role').typed({
       strings: ['^500 Dreamer ', '^500 Designer ', '^500 Developer ', '^500 Lifelong Learner '],
       startDelay: 200,
@@ -18,9 +20,9 @@ var custom = {
     });
   },
 
-  preloader: () => {
-    const $preloader = $('.spinner-wrapper');
-    const $overlay   = $('#preloader');
+  preloader: function preloader() {
+    var $preloader = $('.spinner-wrapper');
+    var $overlay = $('#preloader');
 
     $(window).load(function () {
       setTimeout(function () {
@@ -29,23 +31,26 @@ var custom = {
           translateY: '-80px'
         }, {
           duration: 400,
-          complete: () => $preloader.velocity({
-            translateY: '-100%'
-          },
-          {
-            duration: 1000,
-            progress: () => custom.typeAnimation(),
-            complete: () => {
-              $preloader.hide();
-              $overlay.removeClass().addClass('loaded');
-            }
-          })
+          complete: function complete() {
+            return $preloader.velocity({
+              translateY: '-100%'
+            }, {
+              duration: 1000,
+              progress: function progress() {
+                return custom.typeAnimation();
+              },
+              complete: function complete() {
+                $preloader.hide();
+                $overlay.removeClass().addClass('loaded');
+              }
+            });
+          }
         });
       }, 1000);
     });
   },
 
-  dynamicHeader: function () {
+  dynamicHeader: function dynamicHeader() {
     var $siteHeader = $('#site-header');
 
     if (this.height > 750) {
@@ -53,7 +58,7 @@ var custom = {
     }
   },
 
-  navBackground: () => {
+  navBackground: function navBackground() {
     var $nav = $('.navbar-main');
 
     $(window).on('scroll', function () {
@@ -65,7 +70,7 @@ var custom = {
     });
   },
 
-  scrollToTop: function () {
+  scrollToTop: function scrollToTop() {
     var $scrollButton = $('#scroll-top');
     var offset = 250;
 
@@ -86,11 +91,13 @@ var custom = {
     });
   },
 
-  navigation: function () {
-    var $nav       = $('#navigation');
+  navigation: function navigation() {
+    var _this = this;
+
+    var $nav = $('#navigation');
     var scrollable = $nav.find('.page-scroll');
-    var mainNav    = $nav.find('#main-navbar');
-    var mobileNav  = $nav.find('#mobile-navbar');
+    var mainNav = $nav.find('#main-navbar');
+    var mobileNav = $nav.find('#mobile-navbar');
     var menuToggle = $nav.find('#toggle-navbar');
 
     $('body').on('click', '.page-scroll a', function (e) {
@@ -112,24 +119,24 @@ var custom = {
       mobileNav.html(mainNav.html());
     }
 
-    menuToggle.on('click', '.bar', (e) => {
+    menuToggle.on('click', '.bar', function (e) {
       e.preventDefault();
       if (mobileNav.children('ul').hasClass('expanded')) {
         mobileNav.children('ul.expanded').removeClass('expanded').slideUp(250);
-        $(this).removeClass('animate');
+        $(_this).removeClass('animate');
       } else {
         mobileNav.children('ul').addClass('expanded').slideDown(250);
-        $(this).addClass('animate');
+        $(_this).addClass('animate');
       }
     });
   },
 
-  animateSkill: function () {
+  animateSkill: function animateSkill() {
     var animationTime = 2000;
-    var easing        = 'easeInOutExpo';
-    var $skill        = '#' + $('#skills').attr('id');
-    var $skillHeight  = $('#skills').outerHeight();
-    var $progressbar  = $('.progress-bar');
+    var easing = 'easeInOutExpo';
+    var $skill = '#' + $('#skills').attr('id');
+    var $skillHeight = $('#skills').outerHeight();
+    var $progressbar = $('.progress-bar');
 
     // var controller     = new ScrollMagic.Controller();
 
@@ -143,7 +150,7 @@ var custom = {
       skillProgress.on('enter', function () {
         $progressbar.each(function () {
           var $this = $(this);
-          var percent = ($this.parent().data('progress-percent') / 100);
+          var percent = $this.parent().data('progress-percent') / 100;
           var progressWrapWidth = $this.width();
           var progressTotal = percent * progressWrapWidth;
 
@@ -155,11 +162,11 @@ var custom = {
     }
   },
 
-  linkHighlight: function () {
+  linkHighlight: function linkHighlight() {
     var controller = new ScrollMagic.Controller();
-    var $sections  = $('section');
-    var $nav       = $('.navbar-main');
-    var $dotNav    = $('.dot-navbar');
+    var $sections = $('section');
+    var $nav = $('.navbar-main');
+    var $dotNav = $('.dot-navbar');
 
     $sections.each(function () {
       var $this = $(this);
@@ -169,39 +176,37 @@ var custom = {
       var highlightNav = new ScrollMagic.Scene({
         triggerElement: $triggerID,
         duration: $elementHeight
+      }).setClassToggle($triggerID, 'active').on('enter leave', function (event) {
+        if (event.type == 'enter') {
+          $nav.find('a[href="#' + $this.attr('id') + '"]').addClass('active');
+          $dotNav.find('a[href="#' + $this.attr('id') + '"]').addClass('active');
+        } else {
+          $nav.find('a[href="#' + $this.attr('id') + '"]').removeClass('active');
+          $dotNav.find('a[href="#' + $this.attr('id') + '"]').removeClass('active');
+        }
       })
-        .setClassToggle($triggerID, 'active')
-        .on('enter leave', function (event) {
-          if (event.type == 'enter') {
-            $nav.find('a[href="#' + $this.attr('id') + '"]').addClass('active');
-            $dotNav.find('a[href="#' + $this.attr('id') + '"]').addClass('active');
-          } else {
-            $nav.find('a[href="#' + $this.attr('id') + '"]').removeClass('active');
-            $dotNav.find('a[href="#' + $this.attr('id') + '"]').removeClass('active');
-          }
-        })
-        // .addIndicators()
-        .addTo(controller);
+      // .addIndicators()
+      .addTo(controller);
     });
   },
 
-  scrollAnimation: () => {
-    let $logoOffset        = $('.logo-container').offset();
-    let logoLeftValue      = (custom.width / 2) - $logoOffset.left;
+  scrollAnimation: function scrollAnimation() {
+    var $logoOffset = $('.logo-container').offset();
+    var logoLeftValue = custom.width / 2 - $logoOffset.left;
 
-    let $headerHeight      = $('#site-header').outerHeight();
-    let $aboutHeight       = $('#about').outerHeight();
-    let headerDuration     = $headerHeight + ($aboutHeight / 2);
+    var $headerHeight = $('#site-header').outerHeight();
+    var $aboutHeight = $('#about').outerHeight();
+    var headerDuration = $headerHeight + $aboutHeight / 2;
 
-    let $socialHeight      = $('.social').height();
+    var $socialHeight = $('.social').height();
 
-    let $portfolioHeight   = $('#portfolio').outerHeight();
+    var $portfolioHeight = $('#portfolio').outerHeight();
 
-    let $skillHeight       = $('#skills').outerHeight();
+    var $skillHeight = $('#skills').outerHeight();
 
     var scrollAnimationPin = new ScrollMagic.Controller();
 
-    let logoTween = TweenMax.to('.logo-container', 0.5, {
+    var logoTween = TweenMax.to('.logo-container', 0.5, {
       xPercent: -50,
       x: logoLeftValue
     });
@@ -211,26 +216,20 @@ var custom = {
       offset: 15,
       triggerHook: 0.1
     })
-      // .setPin('.logo', {
-      //   pushFollowers: false,
-      //   spacerClass: 'logo-pin'
-      // })
-      .setTween(logoTween)
-      .setClassToggle('.navbar-main', 'scroll-trigger')
-      .addIndicators({ name: 'main-nav' })
-      .addTo(scrollAnimationPin);
+    // .setPin('.logo', {
+    //   pushFollowers: false,
+    //   spacerClass: 'logo-pin'
+    // })
+    .setTween(logoTween).setClassToggle('.navbar-main', 'scroll-trigger').addIndicators({ name: 'main-nav' }).addTo(scrollAnimationPin);
 
     var headerScene = new ScrollMagic.Scene({
       triggerElement: '.header-wrapper',
       duration: headerDuration - 1,
-      offset: ($(window).height() / 2 - 39)
-    })
-      .setPin('.header-hero-content', {
-        pushFollowers: false,
-        spacerClass: 'header-pin'
-      })
-      .addIndicators({ name: 'header' })
-      .addTo(scrollAnimationPin);
+      offset: $(window).height() / 2 - 39
+    }).setPin('.header-hero-content', {
+      pushFollowers: false,
+      spacerClass: 'header-pin'
+    }).addIndicators({ name: 'header' }).addTo(scrollAnimationPin);
 
     var socialTween = TweenMax.to('.social', 1, {
       autoAlpha: 0,
@@ -239,53 +238,38 @@ var custom = {
     var socialScene = new ScrollMagic.Scene({
       triggerElement: '.social',
       duration: 40,
-      offset: -(($(window).height() / 2) - ($socialHeight * 2.4))
-    })
-      .setTween(socialTween)
-      .addIndicators({ name: 'social' })
-      .addTo(scrollAnimationPin);
+      offset: -($(window).height() / 2 - $socialHeight * 2.4)
+    }).setTween(socialTween).addIndicators({ name: 'social' }).addTo(scrollAnimationPin);
 
     var aboutScene = new ScrollMagic.Scene({
       triggerElement: '#about',
       duration: $aboutHeight / 2,
       offset: $(window).height() / 2 - 40
-    })
-      .setPin('#about-wrapper', { pushFollowers: false })
-      .addIndicators({ name: 'about' })
-      .addTo(scrollAnimationPin);
+    }).setPin('#about-wrapper', { pushFollowers: false }).addIndicators({ name: 'about' }).addTo(scrollAnimationPin);
 
     var portfolioScene = new ScrollMagic.Scene({
       triggerElement: '#portfolio',
       duration: $portfolioHeight - ($portfolioHeight / 5 - 72),
       offset: $(window).height() / 2 - 51
-    })
-      .setPin('#portfolio-title', { pushFollowers: false })
-      .addIndicators({ name: 'portfolio-header' })
-      .addTo(scrollAnimationPin);
+    }).setPin('#portfolio-title', { pushFollowers: false }).addIndicators({ name: 'portfolio-header' }).addTo(scrollAnimationPin);
 
     $('.project-wrapper').each(function () {
-      let $project = $(this);
-      let $textTrigger = $(this).find('.section-content');
+      var $project = $(this);
+      var $textTrigger = $(this).find('.section-content');
 
       var textReveal = new ScrollMagic.Scene({
         triggerElement: $textTrigger[0],
         duration: '100',
         offset: $textTrigger[0].offsetHeight / 2 - 2
-      })
-        .on('enter', () => {
-          $textTrigger.find('.reveal-holder').addClass('show-text');
-        })
-        .addIndicators({ name: 'text-reveal' })
-        .addTo(scrollAnimationPin);
+      }).on('enter', function () {
+        $textTrigger.find('.reveal-holder').addClass('show-text');
+      }).addIndicators({ name: 'text-reveal' }).addTo(scrollAnimationPin);
 
       var projectScene = new ScrollMagic.Scene({
         triggerElement: $project[0],
         duration: $project[0].offsetHeight / 2,
         offset: $project[0].offsetHeight / 7
-      })
-        .setPin($textTrigger[0], { pushFollowers: false })
-        .addIndicators({ name: 'project-pin' })
-        .addTo(scrollAnimationPin);
+      }).setPin($textTrigger[0], { pushFollowers: false }).addIndicators({ name: 'project-pin' }).addTo(scrollAnimationPin);
     });
 
     // var skillTitle = new ScrollMagic.Scene({
@@ -307,7 +291,7 @@ var custom = {
     //   .addTo(scrollAnimationPin);
   },
 
-  modalController: () => {
+  modalController: function modalController() {
     // Get the modal
     var modal = document.getElementById('myModal');
 
@@ -318,19 +302,19 @@ var custom = {
     var span = document.getElementsByClassName('close')[0];
 
     // When the user clicks on the button, open the modal
-    btn.onclick = function(e) {
+    btn.onclick = function (e) {
       e.preventDefault();
       modal.style.display = 'block';
     };
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function(e) {
+    span.onclick = function (e) {
       e.preventDefault();
       modal.style.display = 'none';
     };
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(e) {
+    window.onclick = function (e) {
       e.preventDefault();
       if (e.target == modal) {
         modal.style.display = 'none';
@@ -338,7 +322,7 @@ var custom = {
     };
   },
 
-  init: function () {
+  init: function init() {
     custom.preloader();
     custom.dynamicHeader();
     // custom.navBackground();

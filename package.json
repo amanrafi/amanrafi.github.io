@@ -14,7 +14,8 @@
   },
   "scripts": {
     "dev": "gulp serve",
-    "build": "gulp build:prod --production"
+    "build": "gulp build:prod --production",
+    "images": "gulp image:compress"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
